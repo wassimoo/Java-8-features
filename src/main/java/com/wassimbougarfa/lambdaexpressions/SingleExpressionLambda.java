@@ -36,12 +36,12 @@ public class SingleExpressionLambda {
     /**
      * 3-
      *  Récupperer la liste des clients "Nom Prénom",
-     *  En utilisant l'interface prédifini `Function` et sa methode `.apply()`
+     *  En utilisant l'interface fonctionnelle prédifini `Function` et sa methode `.apply()`
      */
     public static void getCostumersFullName(){
         Customers customers = new Customers();
         try{
-            customers.load();
+            customers.load(); //Charger la liste des client de la fichier CSV
         }catch(IOException e){
             System.err.println("Impossible de charger le fichier.");
         }
