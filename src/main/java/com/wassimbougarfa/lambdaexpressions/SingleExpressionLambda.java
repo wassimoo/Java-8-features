@@ -1,6 +1,10 @@
 package com.wassimbougarfa.lambdaexpressions;
 
+import com.wassimbougarfa.customers.*;
 import com.wassimbougarfa.lambdaexpressions.functionnalinterfaces.*;
+
+import java.io.IOException;
+import java.util.function.Function;
 
 /**
  * SingleExpressionLambda
@@ -28,5 +32,26 @@ public class SingleExpressionLambda {
         hi.sayHello(prenom);
     }
 
-    
+
+    /**
+     * 3-
+     *  Récupperer la liste des clients "Nom Prénom",
+     *  En utilisant l'interface prédifini `Function` et sa methode `.apply()`
+     */
+    public static void getCostumersFullName(){
+        Customers customers = new Customers();
+        try{
+            customers.load();
+        }catch(IOException e){
+            System.err.println("Impossible de charger le fichier.");
+        }
+
+        Function<Customer, String> nameFunc = (Customer c) -> c.firstName;
+        Function<Customer, String> lastNameFunc = (Customer c) -> c.lastName;
+
+        for(Customer c : customers.getAll()){
+            System.out.println(nameFunc.apply(c) + " " + lastNameFunc.apply(c));
+        }
+    }
+
 }
