@@ -38,13 +38,7 @@ public class SingleExpressionLambda {
      *  Récupperer la liste des clients "Nom Prénom",
      *  En utilisant l'interface fonctionnelle prédifini `Function` et sa methode `.apply()`
      */
-    public static void getCostumersFullName(){
-        Customers customers = new Customers();
-        try{
-            customers.load(); //Charger la liste des client de la fichier CSV
-        }catch(IOException e){
-            System.err.println("Impossible de charger le fichier.");
-        }
+    public static void getCostumersFullName(Customers customers){
 
         Function<Customer, String> nameFunc = (Customer c) -> c.firstName;
         Function<Customer, String> lastNameFunc = (Customer c) -> c.lastName;

@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.function.Predicate;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.io.IOException;
 
 import com.wassimbougarfa.customers.*;
 
@@ -33,13 +32,7 @@ public class MultipleExpressionLambda {
      * l'interface fonctionnelle `Predicate`, Il a utilisé pour executer une
      * evaluation d'expression booléene. avec sa methode `.test()`
      */
-    public static void isCostumer(String name, String lastName) {
-        Customers customers = new Customers();
-        try {
-            customers.load(); // Charger la liste des client de la fichier CSV
-        } catch (IOException e) {
-            System.err.println("Impossible de charger le fichier.");
-        }
+    public static void isCustomer(Customers customers, String name, String lastName) {
 
         Predicate<Customer> predicate = (Customer c) -> {
             return c.firstName.equals(name) && c.lastName.equals(lastName);

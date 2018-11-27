@@ -1,6 +1,5 @@
 package com.wassimbougarfa.streams;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,30 +16,19 @@ public class Filtering {
      * avec la methode terminale .forEach avec un réference vers la methode println
      * pour l'affichage
      */
-    public static void showRealCustomers() {
-        Customers customers = new Customers();
+    public static void showRealCustomers(Customers customers) {
 
-        try {
-            customers.load(); // Charger la liste des client de la fichier CSV
-        } catch (IOException e) {
-            System.err.println("Impossible de charger le fichier.");
-        }
-
-        customers.getAll().stream().filter(c -> c.getTotalPurshased() > 0).forEach(System.out::println);
+        customers.getAll()
+                .stream()
+                .filter(c -> c.getTotalPurshased() > 0)
+                .forEach(System.out::println);
     }
 
     /**
      * 2 - Le même principle que showRealCustomers, mais on retourne une List finale
      * cette fois en utilisant les collecteurs .
      */
-    public static List getRealCustomers() {
-        Customers customers = new Customers();
-
-        try {
-            customers.load(); // Charger la liste des client de la fichier CSV
-        } catch (IOException e) {
-            System.err.println("Impossible de charger le fichier.");
-        }
+    public static List getRealCustomers(Customers customers) {
 
         return customers.getAll()
                 .stream()
